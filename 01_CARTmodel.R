@@ -30,3 +30,7 @@ pred   <- predict(fit, test, type = "class")
 submit.tree <- data.frame(PassengerId = test$PassengerId, Survived = pred)
 write.csv(submit.tree, "CARTmodel.csv", row.names = F) ## 78.469%
 rm(submit.tree)
+
+#############################
+### KAGGLE SCORE: 0.78469 ###
+#############################
