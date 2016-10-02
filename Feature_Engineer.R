@@ -28,7 +28,16 @@ rm(clean.test)
 ## Combine into full dataset for furhter feature engineering
 test$Survived <- NA
 titanic <- rbind(train, test)
-apply(titanic, 2, function(x) sum(is.na(x)))
+
+## Data Types
+apply(titanic, 2, function(x) is.na(x))
+
+titanic$Name  <- as.character(titanic$Name)
+titanic$Ticket <- as.character(titanic$Ticket)
+
+titanic$Pclass <- as.factor(titanic$Pclass)
+titanic$Survived <- as.factor(titanic$Survived)
+titanic$Parch <- as.factor(titanic$Parch)
 
 
 ####################
@@ -36,7 +45,9 @@ apply(titanic, 2, function(x) sum(is.na(x)))
 ####################
 ## Name to Title
 titanic$Name  <- as.character(titanic$Name)
-titanic$Title <- sapply(titanic$Name, function(x) {strsplit(x, split = "[,.]")[[1]][2]})
+titanic$Title <- sapply(titanic$Name, function(x) {
+  strsplit(x, split = "[,.]")[[1]][2]
+})
 titanic$Title <- gsub(" ", "", titanic$Title)
 
 ## Bucket Titles into Factors
@@ -64,6 +75,8 @@ Fare_test <- within(titanic, {
   Class[Fare >= quantile(titanic$Fare, na.rm = T)[[3]] & titanic$Fare < quantile(titanic$Fare, na.rm = T)[[4]]] <- "Average"
   Class[Fare >= quantile(titanic$Fare, na.rm = T)[[4]]]                                                         <- "Rich"
 })
+titanic$Class <- as.factor(titanic$Class)
+
 
 #########################
 ## Feature Engineering ##
