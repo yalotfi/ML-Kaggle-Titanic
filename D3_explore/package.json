@@ -5,7 +5,7 @@
   "author": "Yaseen Lotfi",
   "main": "d3.min.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
   "repository": {
@@ -13,7 +13,9 @@
     "url": "https://github.com/yalotfi/ML-Kaggle-Titanic"
   },
   "dependencies": {
-    "express": "*"
+    "express": "*",
+    "d3": "*",
+    "dimple": "*"
   },
   "license": "ISC"
 }
