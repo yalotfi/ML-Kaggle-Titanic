@@ -15,7 +15,8 @@
   "dependencies": {
     "express": "*",
     "d3": "*",
-    "dimple": "*"
+    //"dimple": "*",
+    "path": "*"
   },
   "license": "ISC"
 }
