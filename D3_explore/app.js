@@ -1,7 +1,9 @@
 //Require modules
+var d3 = require('d3');
+//var dimple = require('dimple');
+var path = require('path');
 var express = require('express');
 var app = express();
-var path = require('path');
 
 //Other variables
 var port = process.env.PORT || 3000
