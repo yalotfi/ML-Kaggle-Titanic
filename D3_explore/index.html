@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Titanic</title>
-    <!-- Link D3 and Dimple Libraries -->
-    <script src="public/d3/d3.min.js"></script>
-    <script src="public/d3/dimple.v2.3.0.min.js"></script>
+
     <!-- Link Main CSS -->
     <link rel="stylesheet" type="text/css" href="public/main.css">
 </head>
@@ -13,17 +12,57 @@
         <div id="header">
             <h1>Explore the Titanic</h1>
         </div>
-        <div id="sidebar">
-            
-        </div>
+        <div id="sidebar"></div>
         <div id="mainContent">
-            <div id="histPassengerClass">
-                <script type="text/javascript" src="public/histPassengerClass.js"></script>
+            <div id="testD3">
+                <script type="text/javascript">
+                    (function(d3) {
+
+                        var dataset = [
+                            { label: 'Abulia', count: 10 },
+                            { label: 'Betelgeuse', count: 20 },
+                            { label: 'Cantaloupe', count: 30 },
+                            { label: 'Dijkstra', count: 40 }
+                        ];
+                        var w = 360; //width
+                        var h = 360; //height
+                        var r = Math.min(w, h) / 2; //radius
+                        var color = d3.scaleOrdinal() //color indexes
+                            .range(['#A60F2B', '#648C85', '#B3F2C9', '#528C18', '#C3F25C']);
+
+                        var svg = d3.select(#testD3)
+                            .append('svg')
+                            .attr('width', w)
+                            .attr('height', h)
+                            .append('g')
+                            .attr('transform', 'translate(', + (w / 2) + ',' + (h / 2) + ')');
+
+                        var arc = d3.arc()
+                            .innerRadius(0)
+                            .outerRadius(r);
+
+                        var pie = d3.pie()
+                            .value(function(d) { return d.count; })
+                            .sort(null);
+
+                        var path = svg.selectAll('path')
+                            .data(pie(dataset))
+                            .enter()
+                            .append('path')
+                            .attr('d', arc)
+                            .attr('fill', function(d, i) {
+                                return color(d.data.label);
+                            });
+
+                    })(window.d3);
+                </script>
             </div>
         </div>
-        <div id="footer">
-            
-        </div>
+        <div id="footer"></div>
     </div>
+    <script src="public/d3_lib/d3.js"></script>
+    <!-- Link D3 and Dimple Libraries 
+    <script src="public/d3_lib/d3.min.js"></script>
+    <script src="public/d3_lib/dimple.v2.3.0.min.js"></script>-->
 </body>
 </html>
